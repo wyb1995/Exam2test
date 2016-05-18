@@ -1,18 +1,9 @@
 'use strict';
 
 function thousands_separators(num) {
-    num = num + '';
-    if(/[^0-9\.]/.test(num)) return "invalid value";
-    num=num.replace(/^(\d*)$/,"$1.");
-    num=(num).replace(/(\d*\.\d\d)\d*/,"$1");
-    num=num.replace(".",",");
-    var re=/(\d)(\d{3})/;
-    while(re.test(num)){
-        num=num.replace(re,"$1,$2");
-    }
-    num=num.replace(/,(\d\d)$/,".$1");
-    return num.replace(/^\./,"0.")
-
+    var source = String(num).split(".");//按小数点分成2部分
+    source[0] = source[0].replace(new RegExp('(\\d)(?=(\\d{3})+$)','ig'),"$1,");//只将整数部分进行都好分割
+    return source.join(".");//再将小数部分合并进来
 }
 
 module.exports = thousands_separators;
