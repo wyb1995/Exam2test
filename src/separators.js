@@ -4,7 +4,7 @@ function thousands_separators(num) {
     num = num + '';
     if(/[^0-9\.]/.test(num)) return "invalid value";
     num=num.replace(/^(\d*)$/,"$1.");
-    num=(num+"00").replace(/(\d*\.\d\d)\d*/,"$1");
+    num=(num).replace(/(\d*\.\d\d)\d*/,"$1");
     num=num.replace(".",",");
     var re=/(\d)(\d{3},)/;
     while(re.test(num)){
