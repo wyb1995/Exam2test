@@ -1,6 +1,7 @@
 'use strict';
 
 function thousands_separators(num) {
+    num = num + '';
     if(/[^0-9\.]/.test(num)) return "invalid value";
     num=num.replace(/^(\d*)$/,"$1.");
     num=(num+"00").replace(/(\d*\.\d\d)\d*/,"$1");
