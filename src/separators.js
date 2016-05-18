@@ -1,12 +1,14 @@
 'use strict';
 
 function thousands_separators(num) {
-    var a = RegExp.$1,b = RegExp.$2,c = RegExp.$3;
-    var re = new RegExp().compile("(\\d)(\\d{3})(,|$)");
-    while(re.num(b)){
-        b = b.replace(re,"$1,$2$3");
+    num = num + '';
+    var reg = /(-?\d+)(\d{3})/;
+
+    if(reg.test(num)){
+        num = num.replace(reg, '$1,$2');
     }
-    return a +""+ b +""+ c;
+
+    return num;
 }
 
 module.exports = thousands_separators;
