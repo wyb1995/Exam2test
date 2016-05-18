@@ -1,14 +1,17 @@
 'use strict';
 
 function thousands_separators(num) {
-    num = num + '';
-    var reg = /(-?\d+)(\d{3})/g;
-
-    if(reg.test(num)){
-        num = num.replace(reg, '$1,$2');
+    if(/[^0-9\.]/.test(num)) return "invalid value";
+    num=num.replace(/^(\d*)$/,"$1.");
+    num=(num+"00").replace(/(\d*\.\d\d)\d*/,"$1");
+    num=num.replace(".",",");
+    var re=/(\d)(\d{3},)/;
+    while(re.test(num)){
+        num=num.replace(re,"$1,$2");
     }
+    num=num.replace(/,(\d\d)$/,".$1");
+    return num.replace(/^\./,"0.")
 
-    return num;
 }
 
 module.exports = thousands_separators;
